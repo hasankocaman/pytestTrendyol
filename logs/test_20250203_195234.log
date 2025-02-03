@@ -1,0 +1,12 @@
+2025-02-03 19:52:37,061 - TrendyolPage - INFO - Navigated to https://www.trendyol.com
+2025-02-03 19:52:37,211 - TrendyolPage - INFO - Found element with locator: ('id', 'onetrust-accept-btn-handler')
+2025-02-03 19:52:37,447 - TrendyolPage - INFO - Clicked element with locator: ('id', 'onetrust-accept-btn-handler')
+2025-02-03 19:52:37,447 - TrendyolPage - INFO - Accepted cookies
+2025-02-03 19:52:39,807 - TrendyolPage - INFO - Found element with locator: ('class name', 'V8wbcUhU')
+2025-02-03 19:52:41,923 - TrendyolPage - INFO - Searched for product: macbook
+2025-02-03 19:52:43,971 - TrendyolPage - INFO - Found element with locator: ('css selector', 'div.p-card-wrppr')
+2025-02-03 19:52:44,200 - TrendyolPage - INFO - Clicked element with locator: ('css selector', 'div.p-card-wrppr')
+2025-02-03 19:52:44,200 - TrendyolPage - INFO - Selected first product from search results
+2025-02-03 19:52:56,140 - TrendyolPage - INFO - Found element with locator: ('class name', 'overlay')
+2025-02-03 19:53:06,164 - TrendyolPage - INFO - No overlay found or already invisible
+2025-02-03 19:53:06,254 - TrendyolPage - INFO - Found element with locator: ('class name', 'add-to-basket')
