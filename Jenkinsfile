@@ -21,7 +21,7 @@ pipeline {
             steps {
                 bat '''
                     set PYTHONPATH=%WORKSPACE%
-                    pytest tests/test_trendyol.py -v
+                    pytest tests/test_trendyol.py -v --junitxml=test-results.xml
                 '''
             }
         }
@@ -29,7 +29,7 @@ pipeline {
     
     post {
         always {
-            junit '**/test-results/*.xml'
+            junit '**/test-results.xml'
         }
     }
 }
