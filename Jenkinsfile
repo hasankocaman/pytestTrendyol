@@ -21,7 +21,7 @@ pipeline {
             steps {
                 bat '''
                     set PYTHONPATH=%WORKSPACE%
-                    pytest tests/test_trendyol.py -v --junitxml=test-results.xml
+                    pytest tests/test_trendyol.py -v --junitxml=test-results.xml --html=test-report.html --self-contained-html
                 '''
             }
         }
@@ -30,6 +30,14 @@ pipeline {
     post {
         always {
             junit '**/test-results.xml'
+            publishHTML([
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: '.',
+                reportFiles: 'test-report.html',
+                reportName: 'HTML Test Report'
+            ])
         }
     }
 }
