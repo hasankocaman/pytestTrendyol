@@ -21,7 +21,7 @@ pipeline {
             steps {
                 bat '''
                     set PYTHONPATH=%WORKSPACE%
-                    pytest tests/test_trendyol.py -v --junitxml=test-results.xml --html=test-report.html --self-contained-html
+                    pytest tests/test_trendyol.py -v --alluredir=allure-results
                 '''
             }
         }
@@ -37,6 +37,13 @@ pipeline {
                 reportDir: '.',
                 reportFiles: 'test-report.html',
                 reportName: 'HTML Test Report'
+            ])
+            allure([
+                includeProperties: false,
+                jdk: '',
+                properties: [],
+                reportBuildPolicy: 'ALWAYS',
+                results: [[path: 'allure-results']]
             ])
         }
     }
