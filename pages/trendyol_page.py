@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from .base_page import BasePage
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 import time
 
 class TrendyolPage(BasePage):
@@ -41,17 +42,18 @@ class TrendyolPage(BasePage):
         self.driver.switch_to.window(self.driver.window_handles[-1])
 
     def add_to_cart(self):
-        # Overlay'in kaybolmasını bekle
         try:
-            overlay = self.find_element(self.OVERLAY)
-            self.wait.until(EC.invisibility_of_element(overlay))
-        except:
-            self.logger.info("No overlay found or already invisible")
-        
-        # Sepete ekle düğmesinin tıklanabilir olmasını bekle
-        self.wait.until(EC.element_to_be_clickable(self.ADD_TO_CART_BUTTON))
-        self.click(self.ADD_TO_CART_BUTTON)
-        self.logger.info("Added product to cart")
+            # Öncelikle overlay varsa kapat
+            overlay = self.driver.find_element(By.CLASS_NAME, "overlay")
+            if overlay.is_displayed():
+                print("Overlay bulundu, kapatılıyor...")
+                self.driver.execute_script("arguments[0].style.display='none';", overlay)
+            
+            # Şimdi "Sepete Ekle" butonuna tıkla
+            self.click(self.ADD_TO_CART_BUTTON)
+        except NoSuchElementException:
+            print("Overlay bulunamadı, devam ediliyor...")
+            self.click(self.ADD_TO_CART_BUTTON)
 
     def go_to_cart(self):
         self.click(self.CART_ICON)
