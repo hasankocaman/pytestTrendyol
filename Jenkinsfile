@@ -20,6 +20,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 bat '''
+                    set PYTHONPATH=%WORKSPACE%
                     pytest tests/test_trendyol.py -v
                 '''
             }
